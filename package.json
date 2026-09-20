@@ -1,0 +1,88 @@
+{
+  "name": "error-copy-pro",
+  "displayName": "ErrorCopy Pro",
+  "description": "Understand errors faster with AI - GitHub Copilot Chat, Copilot Web, Claude, ChatGPT",
+  "version": "0.0.1",
+  "publisher": "gidado",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gidadomukhtar/error-copy-pro"
+  },
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Debuggers",
+    "Other"
+  ],
+  "keywords": [
+    "error",
+    "debugging",
+    "copilot",
+    "ai",
+    "claude"
+  ],
+  "icon": "images/icon.png",
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "error-copy-pro.copyError",
+        "title": "ErrorCopy: Copy Error with Context",
+        "category": "ErrorCopy"
+      },
+      {
+        "command": "error-copy-pro.askCopilotChat",
+        "title": "ErrorCopy: Ask GitHub Copilot Chat",
+        "category": "ErrorCopy"
+      },
+      {
+        "command": "error-copy-pro.askCopilotWeb",
+        "title": "ErrorCopy: Ask Copilot Web",
+        "category": "ErrorCopy"
+      },
+      {
+        "command": "error-copy-pro.askClaude",
+        "title": "ErrorCopy: Ask Claude",
+        "category": "ErrorCopy"
+      },
+      {
+        "command": "error-copy-pro.askChatGPT",
+        "title": "ErrorCopy: Ask ChatGPT",
+        "category": "ErrorCopy"
+      },
+      {
+        "command": "error-copy-pro.searchStackOverflow",
+        "title": "ErrorCopy: Search Stack Overflow",
+        "category": "ErrorCopy"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "error-copy-pro.copyError",
+        "key": "ctrl+shift+e",
+        "mac": "cmd+shift+e",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run esbuild-base -- --minify",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --platform=node --target=node20",
+    "esbuild": "npm run esbuild-base -- --sourcemap",
+    "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
+    "compile": "npm run esbuild",
+    "watch": "npm run esbuild-watch"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.1.0",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^5.4.5"
+  },
+  "allowScripts": {
+    "esbuild@0.28.2": true
+  }
+}

@@ -23,7 +23,14 @@
     "claude"
   ],
   "icon": "images/icon.png",
-  "activationEvents": [],
+  "activationEvents": [
+    "onCommand:error-copy-pro.copyError",
+    "onCommand:error-copy-pro.askCopilotChat",
+    "onCommand:error-copy-pro.askCopilotWeb",
+    "onCommand:error-copy-pro.askClaude",
+    "onCommand:error-copy-pro.askChatGPT",
+    "onCommand:error-copy-pro.searchStackOverflow"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
@@ -69,7 +76,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --platform=node --target=node20",
+    "esbuild-base": ".\\node_modules\\.bin\\esbuild.cmd ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --platform=node --target=node20",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "compile": "npm run esbuild",
@@ -77,6 +84,7 @@
   },
   "devDependencies": {
     "@types/glob": "^8.1.0",
+    "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@types/vscode": "^1.90.0",
     "esbuild": "^0.28.2",

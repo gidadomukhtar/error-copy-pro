@@ -15,25 +15,15 @@
     "Debuggers",
     "Other"
   ],
-  "keywords": [
-    "error",
-    "debugging",
-    "copilot",
-    "ai",
-    "claude"
-  ],
-  "icon": "images/icon.png",
-  "activationEvents": [
-    "onCommand:error-copy-pro.copyError",
-    "onCommand:error-copy-pro.askCopilotChat",
-    "onCommand:error-copy-pro.askCopilotWeb",
-    "onCommand:error-copy-pro.askClaude",
-    "onCommand:error-copy-pro.askChatGPT",
-    "onCommand:error-copy-pro.searchStackOverflow"
-  ],
+  
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
+      {
+        "command": "error-copy-pro.explainError",
+        "title": "ErrorCopy: Explain This Error",
+        "category": "ErrorCopy"
+      },
       {
         "command": "error-copy-pro.copyError",
         "title": "ErrorCopy: Copy Error with Context",
@@ -72,7 +62,43 @@
         "mac": "cmd+shift+e",
         "when": "editorTextFocus"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "error-copy-pro.explainError",
+          "group": "navigation@1",
+          "when": "editorTextFocus"
+        },
+        {
+          "command": "error-copy-pro.copyError",
+          "group": "navigation@2",
+          "when": "editorTextFocus"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "ErrorCopy Pro",
+      "properties": {
+        "errorCopy.includeFilePath": {
+          "type": "boolean",
+          "default": false,
+          "description": "Include the local file path in prompts sent to external providers."
+        },
+        "errorCopy.includeSurroundingCode": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include code around the cursor in generated prompts."
+        },
+        "errorCopy.maxContextLines": {
+          "type": "number",
+          "default": 12,
+          "minimum": 2,
+          "maximum": 40,
+          "description": "Maximum number of surrounding code lines included in prompts."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",

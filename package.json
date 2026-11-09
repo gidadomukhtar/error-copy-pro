@@ -102,7 +102,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run esbuild-base -- --minify",
-    "esbuild-base": ".\\node_modules\\.bin\\esbuild.cmd ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --platform=node --target=node20",
+    "esbuild-base": "esbuild ./src/extension.ts --bundle --outfile=out/extension.js --external:vscode --platform=node --target=node20",
     "esbuild": "npm run esbuild-base -- --sourcemap",
     "esbuild-watch": "npm run esbuild-base -- --sourcemap --watch",
     "compile": "npm run esbuild",
